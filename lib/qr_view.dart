@@ -202,14 +202,19 @@ class _QRViewExampleState extends State<QRViewExample> {
     }
   }
 
+  bool _isScanning = false; // Flag untuk mencegah multiple navigation
+
   void _onQRViewCreated(QRViewController controller) {
     setState(() {
       this.controller = controller;
     });
 
     controller.scannedDataStream.listen((scanData) async {
+      if (_isScanning) return; // Cegah navigasi jika sudah dalam proses
+
       setState(() {
         result = scanData;
+        _isScanning = true; // Set flag agar tidak scan ulang
       });
 
       String scannedCode = scanData.code ?? "";
@@ -231,12 +236,20 @@ class _QRViewExampleState extends State<QRViewExample> {
           // Navigasi ke halaman baru
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => TextPage(dataList: apiData)),
+            MaterialPageRoute(
+              builder: (context) => TextPage(dataList: apiData),
+            ),
           ).then((_) {
             controller.resumeCamera(); // Resume kamera setelah kembali
+            setState(() {
+              _isScanning = false; // Reset flag agar bisa scan lagi
+            });
           });
         } else {
           print('Data tidak ditemukan untuk QR Code: $scannedCode');
+          setState(() {
+            _isScanning = false; // Reset flag jika data tidak ditemukan
+          });
         }
       }
     });
