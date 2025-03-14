@@ -9,7 +9,7 @@ import 'package:http/http.dart' as http;
 import 'package:qr_code_scanner_plus/qr_code_scanner_plus.dart';
 
 class QRViewExample extends StatefulWidget {
-  const QRViewExample({Key? key}) : super(key: key);
+  const QRViewExample({super.key});
 
   @override
   State<StatefulWidget> createState() => _QRViewExampleState();
@@ -231,7 +231,7 @@ class _QRViewExampleState extends State<QRViewExample> {
           // Navigasi ke halaman baru
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => TextPage(data: dataNama)),
+            MaterialPageRoute(builder: (context) => TextPage(dataList: apiData)),
           ).then((_) {
             controller.resumeCamera(); // Resume kamera setelah kembali
           });
