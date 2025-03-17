@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_qrscan/textpage.dart';
 import 'package:http/http.dart' as http;
 import 'package:qr_code_scanner_plus/qr_code_scanner_plus.dart';
-import 'mobile_scanner_page.dart';
 
 class QRViewExample extends StatefulWidget {
   const QRViewExample({super.key});
@@ -118,21 +117,6 @@ class _QRViewExampleState extends State<QRViewExample> {
                             'resume',
                             style: TextStyle(fontSize: 20),
                           ),
-                        ),
-                      ),
-                      // tambahan
-                      Container(
-                        margin: const EdgeInsets.all(8),
-                        child: ElevatedButton(
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (_) => const MobileScannerPage(),
-                              ),
-                            );
-                          },
-                          child: const Text('Scan iOS (Mobile Scanner)'),
                         ),
                       ),
                     ],
