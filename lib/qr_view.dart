@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:math';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_qrscan/textpage.dart';
 import 'package:http/http.dart' as http;
@@ -223,7 +222,11 @@ class _QRViewExampleState extends State<QRViewExample> {
         print('QR Code terbaca: $scannedCode');
 
         // Fetch data dari API berdasarkan hasil QR Code yang dipindai
-        List<Map<String, dynamic>>? apiData = await fetchData(scannedCode);
+        String latrackCode = scannedCode.split('latrack=').last;
+        List<Map<String, dynamic>>? apiData = await fetchData(latrackCode);
+        // List<Map<String, dynamic>>? apiData = await fetchData(scannedCode);
+        // coba buat scannedCode mengurai dari link
+        // https://s.id/Ichi?latrack=xxxxx
 
         if (apiData != null && apiData.isNotEmpty) {
           // Ambil data pertama dari API
