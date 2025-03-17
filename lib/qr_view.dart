@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_qrscan/textpage.dart';
 import 'package:http/http.dart' as http;
 import 'package:qr_code_scanner_plus/qr_code_scanner_plus.dart';
+import 'mobile_scanner_page.dart';
 
 class QRViewExample extends StatefulWidget {
   const QRViewExample({super.key});
@@ -119,6 +120,21 @@ class _QRViewExampleState extends State<QRViewExample> {
                           ),
                         ),
                       ),
+                      // tambahan
+                      Container(
+                        margin: const EdgeInsets.all(8),
+                        child: ElevatedButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) => const MobileScannerPage(),
+                              ),
+                            );
+                          },
+                          child: const Text('Scan iOS (Mobile Scanner)'),
+                        ),
+                      ),
                     ],
                   ),
                 ],
@@ -163,7 +179,7 @@ class _QRViewExampleState extends State<QRViewExample> {
     // Tambahkan Transform.scale di sini
     return Center(
       child: Transform.scale(
-        scale: Platform.isIOS ? 2.0 : 1.0, // Zoom 2x hanya di iOS
+        // scale: Platform.isIOS ? 2.0 : 1.0, // Zoom 2x hanya di iOS
         child: QRView(
           key: qrKey,
           onQRViewCreated: _onQRViewCreated,
