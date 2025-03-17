@@ -182,7 +182,7 @@ class _QRViewExampleState extends State<QRViewExample> {
 
   Future<List<Map<String, dynamic>>?> fetchData(String searchQuery) async {
     final String url =
-        'https://staging.lotusarchi.com/search/$searchQuery'; // API contoh
+        'https://staging.lotusarchi.com/scanner/$searchQuery'; // API contoh
     try {
       final response = await http.get(Uri.parse(url));
       if (response.statusCode == 200) {
