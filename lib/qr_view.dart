@@ -164,6 +164,7 @@ class _QRViewExampleState extends State<QRViewExample> {
     return Center(
       child: Transform.scale(
         // scale: Platform.isIOS ? 2.0 : 1.0, // Zoom 2x hanya di iOS
+        scale: 1.0,
         child: QRView(
           key: qrKey,
           onQRViewCreated: _onQRViewCreated,
